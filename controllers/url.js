@@ -3,7 +3,7 @@ const URL = require("../models/url");
 
 
 async function handleGenerateNewShortURL(req, res){
-    console.log("triggered");
+    // console.log("triggered");
     const body = req.body;
     if(!body.url) return res.status(400).json({error: "URL is Required"});
     const shortID = nanoid(12);
@@ -13,7 +13,11 @@ async function handleGenerateNewShortURL(req, res){
         visitHistory: [],
     });
 
-    return res.status(201).json({id: shortID, message: `ShortID generated successfully`});
+    // return res.status(201).json({id: shortID, message: `ShortID generated successfully`});
+    return res.render("home", {
+        id: shortID,
+
+    });
 }
 
 async function handleGetAnalytics(req, res){
