@@ -13,7 +13,7 @@
 <body>
     <h1>URL Shortner</h1>
     <% if (locals.id) { %>
-        <p>URL Generated: <a href="http://localhost:<%= PORT %>/url/<%= id %>">http://localhost:<%= PORT %>/url/<%= id %></a></p>
+        <p>URL Generated: <a href="http://localhost:<%= PORT %>/url/<%= id %>" target="_blank" >http://localhost:<%= PORT %>/url/<%= id %></a></p>
     <% } %>
     <div>
         <form method="POST" action="/url">
@@ -21,6 +21,30 @@
             <input type="text" name="url" placeholder="https://example.com">
             <button type="Submit">Generate</button>
         </form>
+    </div>
+    <div>
+        <% if (locals.urls) { %>
+            <table>
+                <thead>
+                    <th>S. No.</th>
+                    <th>ShortID</th>
+                    <th>Redirect</th>
+                    <th>Clicks</th>
+                </thead>
+                <tbody>
+                    <% urls.forEach((url, index) => { %>
+                        <tr>
+                            <td><%= index+1 %></td>
+                            <td><a href="http://localhost:<%= PORT %>/url/<%= url.shortId %>" target="_blank" ><%= url.shortId %></a></td>
+                            <td><%= url.redirectURL %></td>
+                            <td><%= url.visitHistory.length %></td>
+                        </tr>
+                        
+                    <% }) %>
+                    
+                </tbody>
+            </table>
+        <% } %>
     </div>
     
 </body>
