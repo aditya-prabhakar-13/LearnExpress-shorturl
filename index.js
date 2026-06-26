@@ -8,6 +8,8 @@ const URL = require("./models/url");
 const app = express();
 const PORT = 8000;
 
+app.locals.PORT = PORT;
+
 connectToMongoDB('mongodb://localhost:27017/short-url');
 
 app.set('view engine', "ejs");
